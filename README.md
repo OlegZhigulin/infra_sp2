@@ -37,3 +37,9 @@ docker-compose exec web python manage.py createsuperuser
 # и собрать статику
 
 docker-compose exec web python manage.py collectstatic --no-input 
+
+# Теперь проект доступен по адресу http://localhost/. 
+
+для завершения работы нажмите Ctrl+C
+
+# автор Жигулин Олег телеграм @Oleg_Zhigulin
