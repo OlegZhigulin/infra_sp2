@@ -35,17 +35,17 @@ git@github.com:OlegZhigulin/infra_sp2.git
 
 
 ## В переменную окружения .env добавить:
-
-`DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
-`DB_NAME= # имя базы данных
-`POSTGRES_USER= # логин для подключения к базе данных
-`POSTGRES_PASSWORD= # пароль для подключения к БД (установите свой)
-`DB_HOST=db # название сервиса (контейнера)
-`DB_PORT=5432 # порт для подключения к БД 
-
+```{
+DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
+DB_NAME= # имя базы данных
+POSTGRES_USER= # логин для подключения к базе данных
+POSTGRES_PASSWORD= # пароль для подключения к БД (установите свой)
+DB_HOST=db # название сервиса (контейнера)
+DB_PORT=5432 # порт для подключения к БД }
+```
 ## Перейти в папку infra и запустить docker-compose.yaml (при установленном и запущенном Docker)
 
-`cd infra_sp2/infra
+cd infra_sp2/infra
 
 ## для запуска контейнера выполнить команду:
 
@@ -162,7 +162,7 @@ docker-compose exec web python manage.py collectstatic --no-input
 ```
 
 
-# Документация (запросы для работа с API): http://localhost/redoc/
+# Документация (запросы для работы с API): http://localhost/redoc/
 
 
 # для завершения работы нажмите Ctrl+C
