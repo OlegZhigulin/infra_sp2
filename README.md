@@ -7,7 +7,23 @@ Django 2.2.19
 DRF 3.12.4
 docker-compose 3.8
 
+# Endpoint:
+- /auth   : аутентификация.
+- /users   : пользователи.
+- /genres   : жанры произведений. Одно произведение может быть привязано к нескольким жанрам.
+- /titles   : произведения, к которым пишут отзывы (определённый фильм, книга или песенка).
+- /categories   : категории (типы) произведений («Фильмы», «Книги», «Музыка»).
+- /comments   : комментарии к отзывам. Комментарий привязан к определённому отзыву.
+- /reviews   : отзывы на произведения. Отзыв привязан к определённому произведению.
+
+
+
 # инструкция по запуску и настройке
+
+# в терминале выполнить команду:
+git@github.com:OlegZhigulin/infra_sp2.git
+
+
 В переменную окружения .env добавить:
 
 DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
@@ -38,8 +54,11 @@ docker-compose exec web python manage.py createsuperuser
 
 docker-compose exec web python manage.py collectstatic --no-input 
 
-# Теперь проект доступен по адресу http://localhost/. 
+# Теперь проект доступен по адресу: http://localhost/admin/
 
-для завершения работы нажмите Ctrl+C
+# Документация (запросы для работа с API): http://localhost/redoc/
+
+
+# для завершения работы нажмите Ctrl+C
 
 # автор Жигулин Олег телеграм @Oleg_Zhigulin
