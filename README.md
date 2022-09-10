@@ -33,7 +33,7 @@ docker-compose 3.8
 # инструкция по запуску и настройке
 
 ## в терминале выполнить команду:
-git@github.com:OlegZhigulin/infra_sp2.git
+git clone git@github.com:OlegZhigulin/infra_sp2.git
 
 
 ## В переменную окружения .env добавить:
