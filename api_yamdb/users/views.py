@@ -11,8 +11,8 @@ from users.models import User
 from users.permissions import OwnerOrAdmins
 from users.serializers import (MeSerializer, SignUpSerializer, TokenSerializer,
                                UserSerializer)
-import uuid
 from rest_framework_simplejwt.tokens import AccessToken
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -61,7 +61,7 @@ def signup_post(request):
             'Пользователь с таким логином или email уже существует',
             status=status.HTTP_400_BAD_REQUEST
         )
-    confirmation_code = default_token_generator.make_token(user)    
+    confirmation_code = default_token_generator.make_token(user)
 
     send_mail(
         'Код подверждения',
