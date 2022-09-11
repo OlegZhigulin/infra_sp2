@@ -49,18 +49,11 @@ DB_PORT=5432 # порт для подключения к БД }
 
 cd infra_sp2/infra
 
-<<<<<<< HEAD
 ## для запуска контейнера выполнить команду :
 ### с логами в терминале:
 docker-compose up --build
 ### без логов в терминале:
 docker-compose up -d --build
-=======
-## для запуска контейнера выполнить команду:
-
-docker-compose up -d --build
-
->>>>>>> 18be7ef5881531982a63dffc8666942815de83c2
 ## после успешного запуска подготовить миграции
 
 docker-compose exec web python manage.py makemigrations
@@ -79,7 +72,6 @@ docker-compose exec web python manage.py collectstatic --no-input
 
 ## Теперь проект доступен по адресу: http://localhost/admin/
 
-<<<<<<< HEAD
 # Примеры запросов к API:
 
 ### Авторизация пользователя
@@ -102,23 +94,11 @@ docker-compose exec web python manage.py collectstatic --no-input
 ```
 ### Получаем JWT-токен
 Далее, на эндпоинт http://localhost/api/v1/auth/token/ передаем POST запрос с параметрами username и confirmation_code. В ответ получаем JWT-токен, который используем для выполнения запросов POST, DELETE, PATCH, PUT как авторизованный пользователь.
-=======
-# Примеры запросов к API Yatube:
-
-### Получаем JWT-токен
-На эндпоинт http://127.0.0.1:8000/api/v1/auth/signup/ передаем POST запрос с параметрами username и email. 
-В ответ на указанный email получаем confirmation_code.
-Далее, на эндпоинт http://127.0.0.1:8000/api/v1/auth/token/ передаем POST запрос с параметрами username и confirmation_code. В ответ получаем JWT-токен, который используем для выполнения запросов POST, DELETE, PATCH, PUT как авторизованный пользователь.
->>>>>>> 18be7ef5881531982a63dffc8666942815de83c2
 
 При отправке запроса передавайте токен в заголовке Authorization: Bearer <<токен>>
 
 ### Создаем новoe произведение 
-<<<<<<< HEAD
 Передаем POST-запрос на адрес http://localhost/api/v1/titles/ 
-=======
-Передаем POST-запрос на адрес http://127.0.0.1:8000/api/v1/titles/ 
->>>>>>> 18be7ef5881531982a63dffc8666942815de83c2
 Обязательные поля:   
 ```
 { 
@@ -152,11 +132,7 @@ docker-compose exec web python manage.py collectstatic --no-input
 ```
 
 ### Получаем отзыв по id для указанного произведения.
-<<<<<<< HEAD
 Передаем GET-запрос на адрес http://localhost/api/v1/titles/{title_id}/reviews/{review_id}/
-=======
-Передаем GET-запрос на адрес http://127.0.0.1:8000/api/v1/titles/{title_id}/reviews/{review_id}/
->>>>>>> 18be7ef5881531982a63dffc8666942815de83c2
 
 Ответ будет выглядеть следующим образом:
 
@@ -172,11 +148,7 @@ docker-compose exec web python manage.py collectstatic --no-input
 
 ### Частично обновляем комментарий к отзыву по id.
 Для этого действия вы должны быть автором комментария, модератором или администратором. 
-<<<<<<< HEAD
 Передаем PATCH запрос на эндпоинт http://localhost/api/v1/titles/{title_id}/reviews/{review_id}/comments/{comment_id}/ с параметром "text": "Измененный текст комментария". 
-=======
-Передаем PATCH запрос на эндпоинт http://127.0.0.1:8000/api/v1/titles/{title_id}/reviews/{review_id}/comments/{comment_id}/ с параметром "text": "Измененный текст комментария". 
->>>>>>> 18be7ef5881531982a63dffc8666942815de83c2
 
 Ответ будет выглядеть следующим образом:  
 
@@ -190,11 +162,7 @@ docker-compose exec web python manage.py collectstatic --no-input
 ```
 ### Добавляем новый жанр
 Для этого действия необходимо обладать правами администратора.  
-<<<<<<< HEAD
 Передаем POST запрос на эндпоинт http://localhost/api/v1/genres/  
-=======
-Передаем POST запрос на эндпоинт http://127.0.0.1:8000/api/v1/genres/  
->>>>>>> 18be7ef5881531982a63dffc8666942815de83c2
 Заполняем поля:
 
 ```
