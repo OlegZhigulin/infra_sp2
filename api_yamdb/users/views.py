@@ -11,7 +11,8 @@ from users.models import User
 from users.permissions import OwnerOrAdmins
 from users.serializers import (MeSerializer, SignUpSerializer, TokenSerializer,
                                UserSerializer)
-
+import uuid
+from rest_framework_simplejwt.tokens import AccessToken
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -53,18 +54,21 @@ def signup_post(request):
     try:
         user, created = User.objects.get_or_create(
             username=username,
-            email=email
+            email=email,
         )
     except IntegrityError:
         return Response(
             'Пользователь с таким логином или email уже существует',
             status=status.HTTP_400_BAD_REQUEST
         )
-    confirmation_code = default_token_generator.make_token(user)
+    confirmation_code = default_token_generator.make_token(user)    
 
     send_mail(
-        'Код подверждения', confirmation_code,
-        ['admin@email.com'], (email, ), fail_silently=False
+        'Код подверждения',
+        confirmation_code,
+        'admin@email.com',
+        [email],
+        fail_silently=False
     )
     return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -76,10 +80,10 @@ def token_post(request):
     username = serializer.validated_data['username']
     confirmation_code = serializer.validated_data['confirmation_code']
     user = get_object_or_404(User, username=username)
-    if default_token_generator.check_token(
-            user,
-            serializer.validated_data['confirmation_code']):
+    if confirmation_code != user.confirmation_code:
         return Response(
-            {'token': confirmation_code}, status=status.HTTP_201_CREATED
+            {'confirmation_code': 'Неверный код подтверждения'},
+            status=status.HTTP_400_BAD_REQUEST
         )
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+    token = AccessToken.for_user(user)
+    return Response({f'token: {token}'}, status=status.HTTP_200_OK)
